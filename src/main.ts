@@ -66,7 +66,7 @@ if (typeof risultato === "string") {
   risultato &&                        // 3️⃣ Controlla che non sia undefined o falsy
   'then' in risultato &&              // 4️⃣ Controlla che abbia la proprietà 'then' (SICURO - no any!)
   typeof risultato.then === "function" // 5️⃣ Controlla che 'then' sia una funzione
-  
+
 ) {
   // 6️⃣ Se TUTTI i controlli passano, è sicuramente una Promise
   const valore = await (risultato as Promise<unknown>);  // 7️⃣ Aspetta che si risolva
@@ -76,5 +76,31 @@ if (typeof risultato === "string") {
 }
 
 
+
+
+// 🏆 Snack 2
+// Crea un type alias Dipendente che rappresenta un lavoratore con i seguenti dati:
+//     nome → stringa
+//     cognome → stringa
+//     annoNascita → numero
+//     sesso → Può essere solo "m" o "f".
+//     anniDiServizio (array di numeri, es. [2014, 2015, 2017, 2018])
+
+// 🎯 BONUS
+// Il type alias Dipendente, ha anche i seguenti dati:
+//     emailAziendale → Email assegnata al dipendente (non si può modificare)
+//     contratto → Specifica il tipo di contratto del dipendente, con valori limitati a “indeterminato”, “determinato” o “freelance”.
+
+type TipoContratto = "indeterminato" | "determinato" | "freelance";
+
+type Dipendente = {
+  nome:string,
+  cognome:string,
+  annoNascita:number,
+  sesso: "M" | "F",
+  anniDiServizio: number[],
+  emailAziendale: readonly [string],
+  contratto: TipoContratto
+}
 
 
